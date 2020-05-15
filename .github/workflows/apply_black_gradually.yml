@@ -1,0 +1,29 @@
+name: Apply Black Gradually
+
+on:
+  delete:
+    branches:
+      - black
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Apply Black
+        uses: ./.github/actions/gradual-black-action
+        with:
+          number_of_files: 3
+          ignore_files_regex: test
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Apply black to ${{ env.NUMBER_OF_MODIFIED_FILES }} files
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: Apply black to ${{ env.NUMBER_OF_MODIFIED_FILES }} files
+          body: "Auto-generated PR that applies black to: ${{ env.MODIFIED_FILE_NAMES }}."
+          branch: black

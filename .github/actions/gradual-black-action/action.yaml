@@ -1,0 +1,8 @@
+name: 'Gradual black formatting'
+description: 'Gradually runs the black formatter on files, starting from the ones that were last modified longer ago.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.number_of_files }}
+    - ${{ inputs.ignore_files_regex }}
