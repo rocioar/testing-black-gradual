@@ -2,7 +2,7 @@ FROM python:3.7-alpine3.10
 
 
 # Install dependencies
-RUN apk add --no-cache bash gcc python3-dev git
+RUN apk add --no-cache bash gcc python3-dev~=3.7 git
 RUN pip install black==19.10b0
 
 # Setup docker entry point
