@@ -1,9 +1,10 @@
 name: Apply Black Gradually
 
 on:
-  delete:
+  pull_request:
+    types: [closed]
     branches:
-    - black
+      - black
 
 jobs:
   build:
