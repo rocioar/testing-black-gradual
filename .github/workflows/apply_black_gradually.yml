@@ -3,7 +3,7 @@ name: Apply Black Gradually
 on:
   delete:
     branches:
-      - black
+    - black
 
 jobs:
   build:
