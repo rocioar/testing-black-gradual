@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Print Action
         run: |
+            echo "blahhhhh"
             echo "Runnning on branch ${GITHUB_REF}"
             echo "hola"
             echo ${{ github.head_ref }}
