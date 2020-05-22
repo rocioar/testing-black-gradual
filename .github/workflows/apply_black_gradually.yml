@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print Action
-        run: echo ${GITHUB_REF#refs/heads/}
+        run: echo "Runnning on branch ${GITHUB_REF}"
       - uses: actions/checkout@v2
         with:
           ref: master
