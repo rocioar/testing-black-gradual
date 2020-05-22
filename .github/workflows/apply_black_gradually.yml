@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    if: github.head_ref = 'black'
+    if: github.head_ref == 'black'
     runs-on: ubuntu-latest
     steps:
       - name: Print Action
