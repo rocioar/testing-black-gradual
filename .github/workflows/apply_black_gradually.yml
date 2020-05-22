@@ -3,8 +3,6 @@ name: Apply Black Gradually
 on:
   pull_request:
     types: [closed]
-    branches:
-      - 'black'
 
 jobs:
   build:
@@ -13,6 +11,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: master
+        run: echo ${{ github.event }}
       - name: Apply Black
         uses: ./.github/actions/gradual-black-action
         with:
