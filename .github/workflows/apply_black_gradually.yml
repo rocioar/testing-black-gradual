@@ -8,10 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Print Action
+        run: echo ${{ github.event }}
       - uses: actions/checkout@v2
         with:
           ref: master
-        run: echo ${{ github.event }}
       - name: Apply Black
         uses: ./.github/actions/gradual-black-action
         with:
