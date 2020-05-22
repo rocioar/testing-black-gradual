@@ -6,15 +6,12 @@ on:
 
 jobs:
   build:
+    if: github.head_ref = 'black'
     runs-on: ubuntu-latest
     steps:
       - name: Print Action
         run: |
-            echo "blahhhhh"
-            echo "Runnning on branch ${GITHUB_REF}"
-            echo "hola"
             echo ${{ github.head_ref }}
-            echo ${{ github.base_ref }}
       - uses: actions/checkout@v2
         with:
           ref: master
