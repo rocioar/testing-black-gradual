@@ -14,7 +14,7 @@ jobs:
           ref: master
       - name: Apply Black Gradually
         id: black
-        uses: ./.github/actions/gradual-black-action
+        uses: ./.github/actions/gradual-black-formatter
         with:
           number_of_files: 3
           ignore_files_regex: "*test*,migrations"
