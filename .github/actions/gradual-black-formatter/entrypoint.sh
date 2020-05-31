@@ -14,8 +14,7 @@ filenames=$(
     while read filename; do
         echo "$(git log -1 --format="%ai" -- $filename) $filename";
     done |
-    sort |
-    cut -d " " -f4
+    sort
 )
 echo "$filenames"
 
