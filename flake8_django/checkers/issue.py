@@ -2,8 +2,9 @@ class Issue(object):
     """
     Abstract class for issues.
     """
-    code = ''
-    description = ''
+
+    code = ""
+    description = ""
 
     def __init__(self, lineno, col, parameters=None):
         self.parameters = {} if parameters is None else parameters
@@ -16,4 +17,4 @@ class Issue(object):
         Return issue message.
         """
         message = self.description.format(**self.parameters)
-        return '{code} {message}'.format(code=self.code, message=message)
+        return "{code} {message}".format(code=self.code, message=message)

@@ -5,21 +5,23 @@ from .issue import Issue
 
 
 class DJ06(Issue):
-    code = 'DJ06'
+    code = "DJ06"
     description = 'ModelForm.Meta should not set "exclude", set "fields" instead'
 
 
 class DJ07(Issue):
-    code = 'DJ07'
+    code = "DJ07"
     description = "ModelForm.Meta should not set fields to '__all__'"
 
 
 class ModelFormChecker(BaseModelChecker):
-    model_name_lookup = 'ModelForm'
+    model_name_lookup = "ModelForm"
 
     def checker_applies(self, node):
         for base in node.bases:
-            is_model_form = self.is_model_name_lookup(base) or self.is_models_name_lookup_attribute(base)
+            is_model_form = self.is_model_name_lookup(
+                base
+            ) or self.is_models_name_lookup_attribute(base)
             if is_model_form:
                 return True
         return False
@@ -34,7 +36,7 @@ class ModelFormChecker(BaseModelChecker):
         node_value = element.value.s
         if isinstance(node_value, bytes):
             node_value = node_value.decode()
-        return node_value == '__all__'
+        return node_value == "__all__"
 
     def run(self, node):
         """
@@ -51,18 +53,8 @@ class ModelFormChecker(BaseModelChecker):
                 if not isinstance(element, ast.Assign):
                     continue
                 for target in element.targets:
-                    if target.id == 'fields' and self.is_string_dunder_all(element):
-                        issues.append(
-                            DJ07(
-                                lineno=node.lineno,
-                                col=node.col_offset,
-                            )
-                        )
-                    elif target.id == 'exclude':
-                        issues.append(
-                            DJ06(
-                                lineno=node.lineno,
-                                col=node.col_offset,
-                            )
-                        )
+                    if target.id == "fields" and self.is_string_dunder_all(element):
+                        issues.append(DJ07(lineno=node.lineno, col=node.col_offset,))
+                    elif target.id == "exclude":
+                        issues.append(DJ06(lineno=node.lineno, col=node.col_offset,))
         return issues
